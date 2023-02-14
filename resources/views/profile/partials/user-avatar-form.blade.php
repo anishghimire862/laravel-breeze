@@ -14,10 +14,12 @@
         @csrf
         @method('patch')
 
-        <div class="flex inline-block">
-            <img class="h-8 w-8 mr-2" src="/avatars/{{ Auth::user()->avatar }}" />
-            <x-text-input id="avatar" name="avatar" type="file" class="block w-full " required autofocus />
-        </div>
+        @if (Auth::user()->avatar)
+            <div class="flex inline-block">
+                <img class="h-8 w-8 mr-2" src="/avatars/{{ Auth::user()->avatar }}" />
+                <x-text-input id="avatar" name="avatar" type="file" class="block w-full " required autofocus />
+            </div>
+        @endif
 
         <div>
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
